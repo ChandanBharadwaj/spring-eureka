@@ -1,0 +1,27 @@
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    cb-sample-foo:
+      path: /foo
+      serviceId: cb-sample-foo
+    cb-sample-zoo:
+      path: /zoo
+      serviceId: cb-sample-zoo
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:2420/eureka/
+  instance:
+    hostname: localhost
+
+
+# Increase the Hystrix timeout to 60s (for all)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
