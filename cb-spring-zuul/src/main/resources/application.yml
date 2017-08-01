@@ -1,21 +1,30 @@
+
+server:
+  port: 2422
+
+spring:
+  application:
+    name: cb-spring-zuul
+
+
 zuul:
   #Service will be mapped under the /api URI
+  ignoredServices: '*'
   prefix: /api
   routes:
-    cb-sample-foo:
-      path: /foo
+    hello-server:
+      path: /foo/**
       serviceId: cb-sample-foo
-    cb-sample-zoo:
-      path: /zoo
-      serviceId: cb-sample-zoo
+   # hello-client:
+      #path: /zoo/**
+      #serviceId: HELLO-CLIENT
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:2420/eureka/
+      defaultZone: http://localhost:2421/eureka/
   instance:
     hostname: localhost
-
 
 # Increase the Hystrix timeout to 60s (for all)
 hystrix:
